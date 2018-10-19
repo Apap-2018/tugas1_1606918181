@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.repository.JabatanDb;
 import com.apap.tugas1.service.InstansiService;
 import com.apap.tugas1.service.JabatanService;
 import com.apap.tugas1.service.PegawaiService;
@@ -77,5 +78,13 @@ public class JabatanController {
 			return "delete";
 		}
 		return "deleteJabatan-Error";
+	}
+	
+	//Fitur 9: Menampilkan Daftar Jabatan
+	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+	private String viewAllJabatan(Model model) { 
+		List<JabatanModel> listJabatan = jabatanService.getAllJabatan();
+		model.addAttribute("listJabatan", listJabatan);
+		return "viewAllJabatan";
 	}
 }

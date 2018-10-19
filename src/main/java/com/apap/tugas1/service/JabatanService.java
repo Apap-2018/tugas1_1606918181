@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.repository.JabatanDb;
 
 public interface JabatanService {
 
