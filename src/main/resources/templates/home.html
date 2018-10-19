@@ -25,6 +25,7 @@
                         <div class="card-body">
                             <label for="jabatanId">Masukkan Nomor Induk Pegawai</label>
                             <input type="text" name="nip" class="form-control" />
+                            <br>
                             <button type="submit" class="btn btn-primary">Lihat</button>
                         </div>
                     </form>
@@ -40,12 +41,13 @@
                         Lihat Detail Jabatan
                     </div>
                     <form th:action="@{/jabatan/view}" method="GET">
-	                    <div class="form-group" >
+	                    <div class="card-body">
 						  <label for="idJabatan">Pilih Jabatan</label>
 						  <select class="form-control" name="idJabatan">
 						  	<option hidden >Pilih Jabatan</option>
 						  	<option th:each="jabatan : ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
 						  </select>
+						  <br>
 						  <button type="submit" class="btn btn-primary">Lihat</button>
 						</div>
 					</form>
@@ -54,6 +56,27 @@
         </div>
         <br>
         
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Lihat Pegawai Termuda dan Tertua
+                    </div>
+                    <form th:action="@{/pegawai/termuda-tertua}" method="GET">
+	                    <div class="card-body">
+						  <label for="idInstansi">Pilih Instansi</label>
+						  <select class="form-control" name="idInstansi">
+						  	<option hidden >Pilih Instansi</option>
+						  	<option th:each="instansi : ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama} + ' - ' + ${instansi.provinsi.nama}"></option>
+						  </select>
+						   <br>
+						  <button type="submit" class="btn btn-primary">Lihat</button>
+						</div>
+					</form>
+                </div>
+            </div>
+        </div>
+        <br>      
 
         
     </div>

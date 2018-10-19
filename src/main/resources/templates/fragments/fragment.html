@@ -8,35 +8,45 @@
     
 	<head th:fragment = "css">
 		<link rel = "stylesheet" th:href = "@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{/style.css}">
+   		<link rel="stylesheet" th:href="@{/DataTables-1.10.18/css/dataTables.bootstrap4.min.css}">
+   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	
 	<head th:fragment = "js">
-		<script th:src = "@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery3.2.1.slim.min.js}"></script>
+   		<script th:src="@{/js/popper.min.js}"></script>
+      	<script th:src="@{/js/bootstrap.min.js}"></script>
+      	<script th:src="@{/DataTables-1.10.18/js/jquery.dataTables.min.js}"></script>
+      	<script th:src="@{/DataTables-1.10.18/js/dataTables.bootstrap4.min.js}"></script>
 	</head>
 </head>
 
 <body>
-	<nav th:fragment = "navbar" class = "navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class = "navbar-brand" href = "#">SIPEG</a>
-		<div class = "collapse navbar-collapse" id = "navbarSupportedContent">
-			<ul class = "navbar-nav mr-auto">
-				<li class = "nav-item active">
-					<a class = "nav-link" th:href = "@{/}">Home</a>
-				</li>
-				<li class = "nav-item active">
-					<a class = "nav-link" th:href = "@{/}">Tambah Pegawai</a>
-				</li>
-				<li class = "nav-item active">
-					<a class = "nav-link" th:href = "@{/jabatan/tambah}">Tambah Jabatan</a>
-				</li>
-				<li class = "nav-item active">
-					<a class = "nav-link" th:href = "@{/}">Cari Pegawai</a>
-				</li>
-				<li class = "nav-item active">
-					<a class = "nav-link" th:href = "@{/jabatan/viewall}">Lihat Semua Jabatan</a>
-				</li>
-			</ul>
+	<nav th:fragment = "navbar" class = "navbar navbar-expand-lg navbar-dark bg-dark " id="myTopnav">
+		<a class = "navbar-brand" th:href = "@{/}">SIPEG</a>
+		<div class = "topnav" id = "myTopnav">
+			<a th:href = "@{/}" class="active">Home</a>
+			<a th:href = "@{/}">Tambah Pegawai</a>
+			<a th:href = "@{/jabatan/tambah}">Tambah Jabatan</a>
+			<a th:href = "@{/}">Cari Pegawai</a>
+			<a th:href = "@{/jabatan/viewall}">Lihat Semua Jabatan</a>
+			<a class="icon" onclick="function">
+			  <i class="fa fa-bars"></i>
+			</a>
 		</div>
 	</nav>
 </body>
 </html>
+
+<script>
+$(document).ready(function(){
+    var x = document.getElementById('#myTopnav');
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>

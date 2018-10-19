@@ -83,7 +83,7 @@ public class JabatanController {
 	//Fitur 9: Menampilkan Daftar Jabatan
 	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
 	private String viewAllJabatan(Model model) { 
-		List<JabatanModel> listJabatan = jabatanService.getAllJabatan();
+		List<JabatanModel> listJabatan = jabatanService.listJabatan();
 		model.addAttribute("listJabatan", listJabatan);
 		return "viewAllJabatan";
 	}

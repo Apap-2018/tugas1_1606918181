@@ -17,7 +17,7 @@ public class InstansiServiceImpl implements InstansiService {
 	private InstansiDb instansiDb;
 
 	@Override
-	public List<InstansiModel> getAllInstansi() {
+	public List<InstansiModel> listInstansi() {
 		return instansiDb.findAll();
 	}
 

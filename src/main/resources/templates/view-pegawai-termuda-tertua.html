@@ -4,11 +4,11 @@
 		<title th:replace="fragments/fragment :: headerFragment (pageTitle='Detail Pegawai')"></title>
 		<object th:include = "fragments/fragment :: css" th:remove = "tag"></object>
 		<object th:include = "fragments/fragment :: js" th:remove = "tag"></object>
+		<nav th:replace = "fragments/fragment :: navbar"></nav>
 	</head>
 	
 	<body>
-	<nav th:replace = "fragments/fragment :: navbar"></nav>
-	
+	<div class="split left">
 	<h3>Data Pegawai Termuda</h3>
 	<table class="table table-borderless">
 		  <thead>
@@ -46,20 +46,17 @@
 		    	<th scope="row">Jabatan</td>
 		    	<td>
 		    		<ul>
-		    			<li th:each="jabatan : ${jabatanPegawaiTermuda}">
+		    			<li th:each="jabatan : ${pegawaiTermuda.jabatanPegawai}">
 		    				<p1 th:text= "${jabatan.nama}"></p1>
 		    			</li>
 		    		</ul>
 		    	</th>
 		    </tr>
-		    <tr>
-		      <th scope="row">Gaji</th>
-		      <td th:text="'Rp ' + ${gajiPegawaiTermuda}"></td>
-		    </tr>
 		  </tbody>
 		</table>
-		
-		
+	</div>
+	
+	<div class="split right">
 		<h3>Data Pegawai Tertua</h3>
 		<table class="table table-borderless">
 		  <thead>
@@ -97,17 +94,14 @@
 		    	<th scope="row">Jabatan</td>
 		    	<td>
 		    		<ul>
-		    			<li th:each="jabatan : ${jabatanPegawaiTertua}">
-		    				<p1 th:text= "${jabatanTertua.nama}"></p1>
+		    			<li th:each="jabatan : ${pegawaiTertua.jabatanPegawai}">
+		    				<p1 th:text= "${jabatan.nama}"></p1>
 		    			</li>
 		    		</ul>
 		    	</th>
 		    </tr>
-		    <tr>
-		      <th scope="row">Gaji</th>
-		      <td th:text="'Rp ' + ${gajiPegawaiTertua}"></td>
-		    </tr>
 		  </tbody>
 		</table>
+	</div>
 	</body>
 </html>

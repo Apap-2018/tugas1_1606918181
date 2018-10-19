@@ -32,7 +32,7 @@ public class PegawaiServiceImpl implements PegawaiService {
 		PegawaiModel pegawai = this.getPegawaiDetailByNip(nip);
 		double presentaseTunjangan = pegawai.getInstansi().getProvinsi().getPresentase_tunjangan();
 		double max_gaji = 0;
-		for (JabatanModel jabatan : pegawai.getListJabatan()) {
+		for (JabatanModel jabatan : pegawai.getJabatanPegawai()) {
 			if (jabatan.getGaji_pokok() > max_gaji) {
 				max_gaji = jabatan.getGaji_pokok();
 			}

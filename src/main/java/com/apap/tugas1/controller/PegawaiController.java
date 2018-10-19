@@ -35,11 +35,11 @@ public class PegawaiController {
 	private String home(Model model) {
 		
 		//Fitur 6: Menampilkan Data Suatu Jabatan
-		List<JabatanModel> listJabatan = jabatanService.getAllJabatan();
+		List<JabatanModel> listJabatan = jabatanService.listJabatan();
 		model.addAttribute("listJabatan", listJabatan);
 		
 		//Fitur 10: Menampilkan Pegawai Termuda dan Tertua di Setiap Instansi
-		List<InstansiModel> listInstansi = instansiService.getAllInstansi();
+		List<InstansiModel> listInstansi = instansiService.listInstansi();
 		model.addAttribute("listInstansi", listInstansi);
 		
 		return "home";
@@ -49,7 +49,7 @@ public class PegawaiController {
 	@RequestMapping(value = "/pegawai", method = RequestMethod.GET)
 	public String viewPegawai(@RequestParam (value = "nip") String nip, Model model) {
 		PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nip);
-		List<JabatanModel> jabatanPegawai = pegawai.getListJabatan();
+		List<JabatanModel> jabatanPegawai = pegawai.getJabatanPegawai();
 		double gaji = pegawaiService.getGajiByNip(nip);
 		model.addAttribute("pegawai", pegawai);
 		model.addAttribute("jabatanPegawai", jabatanPegawai);
@@ -63,19 +63,33 @@ public class PegawaiController {
 		
 		InstansiModel instansi = instansiService.getInstansiDetailById(id);
 		
-		PegawaiModel pegawaiTermuda = instansi.getListPegawai().get(instansi.getListPegawai().size()-1);
-		PegawaiModel pegawaiTertua = instansi.getListPegawai().get(0);
+		List<PegawaiModel> listPegawai = instansi.getPegawaiInstansi();
 		
-		String jabatanPegawaiTermuda = instansi.getNama();
-		String jabatanPegawaiTertua = instansi.getNama();
+		List<JabatanModel> listJabatan = jabatanService.listJabatan();
+		model.addAttribute("listJabatan", listJabatan);
 		
+		PegawaiModel pegawaiTermuda;
+		PegawaiModel pegawaiTertua;
 		
-		model.addAttribute("pegawaiTermuda", pegawaiTermuda);
-		model.addAttribute("jabatanPegawaiTermuda", instansi.getNama());
-		
-		model.addAttribute("pegawaiTertua", pegawaiTertua);
-		model.addAttribute("jabatanPegawaiTertua", instansi.getNama());
-		
+		if (listPegawai.size()>0) {
+			pegawaiTermuda = listPegawai.get(1);
+			pegawaiTertua = listPegawai.get(1);
+			
+			for (PegawaiModel pegawai : listPegawai) {
+				if (pegawai.getTanggal_lahir().before(pegawaiTertua.getTanggal_lahir())) {
+					pegawaiTertua = pegawai;
+				}
+				else if (pegawai.getTanggal_lahir().after(pegawaiTermuda.getTanggal_lahir())) {
+					pegawaiTermuda = pegawai;
+				}
+			}
+			
+			model.addAttribute("listPegawai", listPegawai);
+			model.addAttribute("listJabatan", listJabatan);
+			
+			model.addAttribute("pegawaiTermuda", pegawaiTermuda);
+			model.addAttribute("pegawaiTertua", pegawaiTertua);
+		}
 		return "view-pegawai-termuda-tertua";
 	}
 }

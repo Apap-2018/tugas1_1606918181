@@ -126,12 +126,12 @@ public class PegawaiModel implements Serializable{
 		this.tahun_masuk = tahun_masuk;
 	}
 
-	public List<JabatanModel> getListJabatan() {
+	public List<JabatanModel> getJabatanPegawai() {
 		return jabatanPegawai;
 	}
 
-	public void setListJabatan(List<JabatanModel> listJabatan) {
-		this.jabatanPegawai = listJabatan;
+	public void setJabatanPegawai(List<JabatanModel> jabatanPegawai) {
+		this.jabatanPegawai = jabatanPegawai;
 	}
 
 	public InstansiModel getInstansi() {

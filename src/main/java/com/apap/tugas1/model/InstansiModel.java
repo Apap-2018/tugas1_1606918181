@@ -89,11 +89,11 @@ public class InstansiModel implements Serializable{
 		this.provinsi = provinsi;
 	}
 
-	public List<PegawaiModel> getListPegawai() {
+	public List<PegawaiModel> getPegawaiInstansi() {
 		return pegawaiInstansi;
 	}
 
-	public void setListPegawai(List<PegawaiModel> listPegawai) {
-		this.pegawaiInstansi = listPegawai;
+	public void setPegawaiInstansi(List<PegawaiModel> pegawaiInstansi) {
+		this.pegawaiInstansi = pegawaiInstansi;
 	}
 }
