@@ -48,6 +48,6 @@ public class PegawaiController {
 		model.addAttribute("pegawai", pegawai);
 		model.addAttribute("jabatanPegawai", jabatanPegawai);
 		model.addAttribute("gaji", gaji);
-		return "view-pegawai";
+		return "viewPegawai";
 	}
 }

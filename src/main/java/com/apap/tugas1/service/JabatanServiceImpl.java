@@ -39,6 +39,9 @@ public class JabatanServiceImpl implements JabatanService {
 		jabatan.setGaji_pokok(newJabatan.getGaji_pokok());
 		jabatanDb.save(jabatan);
 	}
-	
-	
+
+	@Override
+	public void delete(JabatanModel jabatan) {
+		jabatanDb.delete(jabatan);
+	}
 }

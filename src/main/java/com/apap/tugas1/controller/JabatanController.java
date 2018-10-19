@@ -37,7 +37,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.GET)
 	private String add(Model model) {
 		model.addAttribute("jabatan", new JabatanModel());
-		return "add-jabatan";
+		return "addJabatan";
 	}
 
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.POST)
@@ -51,7 +51,7 @@ public class JabatanController {
 	public String viewPegawai(@RequestParam (value = "idJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
-		return "view-jabatan";
+		return "viewJabatan";
 	}
 	
 	//Fitur 7: Mengubah Data Jabatan
@@ -59,12 +59,23 @@ public class JabatanController {
 	private String update(@RequestParam(value = "idJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
-		return "update-jabatan";
+		return "updateJabatan";
 	}
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
 	private String updateJabatanSubmit(@RequestParam(value = "idJabatan") long id, @ModelAttribute JabatanModel jabatan) {
 		jabatanService.updateJabatan(id, jabatan);
 		return "update";
+	}
+	
+	//Fitur 8: Menghapus Jabatan
+	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.GET)
+	private String deleteJabatan(@RequestParam("idJabatan") long id, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		if (jabatan.getListPegawai().size() < 1) {
+			jabatanService.delete(jabatan);
+			return "delete";
+		}
+		return "deleteJabatan-Error";
 	}
 }
