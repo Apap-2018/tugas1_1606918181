@@ -8,6 +8,7 @@
 	
 	<body>
 	<nav th:replace = "fragments/fragment :: navbar"></nav>
+	<br>
 		<h3 th:text = "'Detail Jabatan ' + ${jabatan.nama}"></h3>
 		<table class="table table-borderless">
 			  <thead>
@@ -31,7 +32,7 @@
 			    </tr>
 			    <tr>
 			    	<td>
-			    	<form th:action="@{/jabatan/ubah/}">
+			    	<form th:action="@{/jabatan/ubah}">
 					<input type="hidden" name="idJabatan" th:value="${jabatan.id}">
 	  				<button class="btn btn-primary">Ubah</button>
 	 				</form>

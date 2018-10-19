@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,5 +52,19 @@ public class JabatanController {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		model.addAttribute("jabatan", jabatan);
 		return "view-jabatan";
+	}
+	
+	//Fitur 7: Mengubah Data Jabatan
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
+	private String update(@RequestParam(value = "idJabatan") long id, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		model.addAttribute("jabatan", jabatan);
+		return "update-jabatan";
+	}
+	
+	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+	private String updateJabatanSubmit(@RequestParam(value = "idJabatan") long id, @ModelAttribute JabatanModel jabatan) {
+		jabatanService.updateJabatan(id, jabatan);
+		return "update";
 	}
 }

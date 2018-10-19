@@ -10,7 +10,7 @@
 	<nav th:replace = "fragments/fragment :: navbar"></nav>
 	<br>
 	<h3>Ubah Jabatan</h3>
-	 <form th:action="@{/jabatan/ubah/{id}(id=${jabatan.id})}" th:object="${jabatan}" method="POST">
+	 <form th:action="@{/jabatan/ubah(idJabatan=${jabatan.id})}" th:object="${jabatan}" method="POST">
 		
 		<table class="table table-borderless">
 		  <thead>
