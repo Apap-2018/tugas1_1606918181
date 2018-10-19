@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:replace="fragments/fragment :: headerFragment (pageTitle='Tambah Pegawai')"></title>
+		<object th:include = "fragments/fragment :: css" th:remove = "tag"></object>
+		<object th:include = "fragments/fragment :: js" th:remove = "tag"></object>
+	</head>
+	
+	<body>
+	<nav th:replace = "fragments/fragment :: navbar"></nav>
+	<br>
+	<h3>Tambah Pegawai</h3>
+	 <form th:action="@{/pegawai/tambah}" th:object="${pegawai}" method="POST">
+		
+		<table class="table table-borderless">
+		  <thead>
+		    <tr>
+		      <th scope="col"></th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  
+		  <tbody>
+		    <tr>
+		      <th scope="row">Nama</th>
+		      <td><input type="text" name="nama" /></td>
+		    </tr>
+
+		   	<tr>
+		      <th scope="row">Tempat Lahir</th>
+		      <td><input type="text" name="tempat_lahir" /></td>
+		    </tr>
+
+		    <tr>
+		      <th scope="row">Tanggal Lahir</th>
+		      <td><input type="date" name="tanggal_lahir" /></td>
+		    </tr>
+		    
+		   	<tr>
+		      <th scope="row">Tahun Masuk</th>
+		      <td><input type="text" name="tahun_masuk" /></td>
+		    </tr>
+		   	
+		    <tr>
+		      <th scope="row">Provinsi</th>
+		      <td>
+			  <select class="form-control" name="provinsi" id="provinsi">
+			  	<option hidden >Pilih Provinsi</option>
+			  	<option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+			  </select>
+		      </td>
+		    </tr>
+		    
+		    <tr>
+		      <th scope="row">Nama Instansi</th>
+		      <td>
+			  <select class="form-control" name="instansi" id="instansi">
+			  	<option hidden >Pilih Instansi</option>
+			  	<option th:each="instansi : ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"></option>
+			  </select>
+		      </td>
+		    </tr>
+		    
+		   	<tr>
+		      <th scope="row">Jabatan</th>
+		      <td>
+			  <select class="form-control" name="jabatan" id="jabatan">
+			  	<option hidden >Pilih Jabatan</option>
+			  	<option th:each="jabatan : ${listJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+			  </select>
+			  <a th:href="@{/jabatan/tambah}">Tambah Jabatan Lainnya</a>
+		      </td>
+		    </tr>
+		    
+			</tbody>
+		</table>
+		
+		<div class="text-center">
+			<button type="submit" class="btn btn-primary" name="save">Simpan</button>
+		</div>
+		
+	</form>
+</body>
+</html>
