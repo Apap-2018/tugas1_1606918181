@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:replace="fragments/fragment :: headerFragment (pageTitle='Detail Pegawai')"></title>
+		<object th:include = "fragments/fragment :: css" th:remove = "tag"></object>
+		<object th:include = "fragments/fragment :: js" th:remove = "tag"></object>
+	</head>
+	
+	<body>
+	<nav th:replace = "fragments/fragment :: navbar"></nav>
+		<h3 th:text = "'Lihat Data Pegawai - ' + ${pegawai.nip}"></h3>
+		<table class="table table-borderless">
+			  <thead>
+			    <tr>
+			      <th scope="col"></th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">NIP</th>
+			      <td th:text = "${pegawai.nip}"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Nama</th>
+			      <td th:text = "${pegawai.nama}"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Tempat Lahir</th>
+			      <td th:text = "${pegawai.tempat_lahir}"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Tanggal Lahir</th>
+			      <td th:text = "${pegawai.tanggal_lahir}"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Tahun Masuk</th>
+			      <td th:text = "${pegawai.tahun_masuk}"></td>
+			    </tr>
+			    <tr>
+			      <th scope="row">Nama Instansi</th>
+			      <td th:text = "${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}"></td>
+			    </tr>
+			    <tr>
+			    	<th scope="row">Jabatan</td>
+			    	<td>
+			    		<ul>
+			    			<li th:each="jabatan : ${jabatanPegawai}">
+			    				<p1 th:text= "${jabatan.nama}"></p1>
+			    			</li>
+			    		</ul>
+			    	</th>
+			    </tr>
+			    <tr>
+			      <th scope="row">Gaji</th>
+			      <td th:text="'Rp ' + ${gaji}"></td>
+			    </tr>
+			  </tbody>
+			</table>
+			<div class="text-center">
+			<form th:action="@{/pegawai/update/}">
+				<input type="hidden" name="nip" th:value="${pegawai.nip}">
+	  			<button class="btn btn-primary">Ubah</button>
+	 		</form>
+	 		</div>
+	</body>
+</html>
