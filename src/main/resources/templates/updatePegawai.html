@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:replace="fragments/fragment :: headerFragment (pageTitle='Ubah Pegawai')"></title>
+    <object th:include = "fragments/fragment :: css" th:remove = "tag"></object>
+    <object th:include = "fragments/fragment :: js" th:remove = "tag"></object>
+</head>
+
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="container-fluid">
+    <br>
+    <h2>Ubah Pegawai</h2>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header text-center">
+						<a class="text-center" th:text="'Ubah Data Pegawai - ' + ${pegawai.nip}"></a>
+					</div>
+					<div class="card-body">
+						
+                        <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
+                            <input type="hidden" id="nipP" th:value="${pegawai.nip}" th:field="*{nip}"/> 
+                            <input type="hidden" id="id_pegawai" th:value="${pegawai.id}" th:field="*{id}"/>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Nama</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="nama" th:field="*{nama}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tempat Lahir</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="tempatLahir" th:field="*{tempatLahir}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tanggal Lahir</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="date" name="tanggalLahir" th:field="*{tanggalLahir}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Tahun Masuk</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control" type="text" name="tahunMasuk" th:field="*{tahunMasuk}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Provinsi</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="provinsi" name="provinsi" th:field="${pegawai.instansi.provinsi}">
+                                        <option th:each="provinsi : ${listProvinsi}" th:value="${provinsi.id}" th:text="${provinsi.nama}"> </option>
+                                    </select>
+                                </div>
+                            </div>	
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Nama Instansi</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <select class="form-control" id="instansi" name="instansi" th:value="${instansi}" required="required">
+                                    	<option th:each="instansi : ${listInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}"> </option>
+                                    </select> 
+                                </div>
+                            </div>
+						
+							Jabatan (Pilih minimal 1 jabatan) <br>
+							<div class="table-wrapper-scroll-y">
+								<table class="table table-hover table-sm">
+									<tr>
+										<th style="text-align:center"> Jabatan </th>
+										<th style="text-align:center"> Pilih </th>
+									</tr>
+									<tr th:each="jabatan : ${listJabatan}">
+										<td th:text="${jabatan.nama}"></td>
+										<td>
+											<input type="checkbox" th:field="*{jabatanPegawai}" th:value="${jabatan.id}"/> 
+											<label th:for="${#ids.prev('jabatanPegawai')}"></label>
+										</td>
+									</tr>
+								</table>
+							</div>
+                            <br>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+	$.getJSON("http://localhost:8080/provinsi-get-update",{
+			provinsiId : $("#provinsi").val(),
+			pegawaiNip : $("#nipP").val(),
+			ajax : 'true'
+		},
+		function(data) {
+			var len = data.length;
+			var selected = data[data.length - 1];
+			var html = '<option value= "' + selected.id + '" disabled="disabled" selected="selected">' + selected.nama + '</option>';
+			for (var i = 0; i < len - 1; i++) {
+				html += '<option value= "'+ data[i].id +'">'
+					+ data[i].nama
+					+ '</option>';
+			}
+			$('#instansi').html(html);
+		});
+	});
+$('#provinsi').change(function() {
+	$.getJSON("http://localhost:8080/provinsi-get",{
+		provinsiId : $(this).val(),
+		ajax : 'true'
+	},
+	function(data) {
+		var html = '';
+		var len = data.length;
+		for (var i = 0; i < len; i++) {
+			html += '<option value= "'+ data[i].id +'" th:text="'+ data[i].nama +'">'
+					+ data[i].nama
+					+ '</option>';
+		}
+		$('#instansi').html(html);
+	});
+});
+$('#instansi').change(function() {
+	$.getJSON("http://localhost:8080/instansi-get", {
+		instansiId : $(this).val(),
+		ajax : 'true'
+	}, function(data) {
+		this.value = data;
+		});
+	});
+</script>
+</body>
+</html>

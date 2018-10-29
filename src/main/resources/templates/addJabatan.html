@@ -9,36 +9,48 @@
 	<body>
 	<nav th:replace = "fragments/fragment :: navbar"></nav>
 	<br>
-	<h3>Tambah Jabatan</h3>
-	 <form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
-		
-		<table class="table table-borderless">
-		  <thead>
-		    <tr>
-		      <th scope="col"></th>
-		      <th scope="col"></th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr>
-		      <th scope="row">Nama</th>
-		      <td><input type="text" name="nama" /></td>
-		    </tr>
-		    <br>
-		   	<tr>
-		      <th scope="row">Deskripsi</th>
-		      <td><input type="text" name="deskripsi" /></td>
-		    </tr>
-		    <br>
-		    <tr>
-		      <th scope="row">Gaji Pokok</th>
-		      <td><input type="number" name="gaji_pokok" /></td>
-		    </tr>
-			</tbody>
-		</table>
-		<div class="text-center">
-			<button type="submit" class="btn btn-primary" name="save">Simpan</button>
-		</div>
-	</form>
-</body>
+	<h2>Tambah Jabatan</h2>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center" >
+                Tambah Jabatan
+            </div>
+            <div class="card-body">
+                <form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Nama</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="nama" />
+                        </div>
+                    </div>	
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="deskripsi" />
+                        </div>
+                    </div>	
+				
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Gaji Pokok</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input class="form-control" type="number" name="gajiPokok" />
+                        </div>
+                    </div>
+				
+				    <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary" name="save">Simpan</button>
+                    </div>									                
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,7 +29,6 @@ public class InstansiModel implements Serializable{
 	
 	//id
 	@Id
-	@Size(max = 20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	

@@ -7,43 +7,58 @@
 	</head>
 	
 	<body>
-	<nav th:replace = "fragments/fragment :: navbar"></nav>
+    <nav th:replace = "fragments/fragment :: navbar"></nav>
+    <br>
+    <h3 th:text = "'Detail Jabatan ' + ${jabatan.nama}"></h3>
 	<br>
-		<h3 th:text = "'Detail Jabatan ' + ${jabatan.nama}"></h3>
-		<table class="table table-borderless">
-			  <thead>
-			    <tr>
-			      <th scope="col"></th>
-			      <th scope="col"></th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">Nama</th>
-			      <td th:text = "${jabatan.nama}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Deskripsi</th>
-			      <td th:text = "${jabatan.deskripsi}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Gaji Pokok</th>
-			      <td th:text = "'Rp ' + ${jabatan.gaji_pokok}"></td>
-			    </tr>
-			    <tr>
-			    	<td>
-			    	<form th:action="@{/jabatan/ubah}">
-					<input type="hidden" name="idJabatan" th:value="${jabatan.id}">
-	  				<button class="btn btn-primary">Ubah</button>
-	 				</form>
-	 				</td>
-			    	<td>
-			    	<form th:action="@{/jabatan/hapus}">
-					<input type="hidden" name="idJabatan" th:value="${jabatan.id}">
-	  				<button class="btn btn-primary">Hapus</button>
-	 				</form>
-	 				</td>	 				
-			  </tbody>
-			</table>
-	</body>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center">
+                Detail Jabatan
+            </div>
+            <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Nama</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${jabatan.nama}"></p>
+                        </div>
+                    </div>	
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Deskripsi</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${jabatan.deskripsi}"></p>
+                        </div>
+                    </div>	
+				
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Gaji Pokok</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "'Rp ' + ${jabatan.gajiPokok}"></p>
+                        </div>
+                    </div>
+				
+                    <br>
+                    <div class="text-center">
+                        <form th:action="@{/jabatan/ubah}">
+                            <input type="hidden" name="idJabatan" th:value="${jabatan.id}">
+                            <button class="btn btn-primary">Ubah</button>
+                        </form>
+                        <br>
+                        <form th:action="@{/jabatan/hapus}">
+                            <input type="hidden" name="idJabatan" th:value="${jabatan.id}">
+                            <button class="btn btn-primary">Hapus</button>
+                        </form>
+                    </div>								                
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

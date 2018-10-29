@@ -7,61 +7,100 @@
 	</head>
 	
 	<body>
-	<nav th:replace = "fragments/fragment :: navbar"></nav>
-		<h3 th:text = "'Lihat Data Pegawai - ' + ${pegawai.nip}"></h3>
-		<table class="table table-borderless">
-			  <thead>
-			    <tr>
-			      <th scope="col"></th>
-			      <th scope="col"></th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			    <tr>
-			      <th scope="row">NIP</th>
-			      <td th:text = "${pegawai.nip}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Nama</th>
-			      <td th:text = "${pegawai.nama}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Tempat Lahir</th>
-			      <td th:text = "${pegawai.tempat_lahir}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Tanggal Lahir</th>
-			      <td th:text = "${pegawai.tanggal_lahir}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Tahun Masuk</th>
-			      <td th:text = "${pegawai.tahun_masuk}"></td>
-			    </tr>
-			    <tr>
-			      <th scope="row">Nama Instansi</th>
-			      <td th:text = "${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}"></td>
-			    </tr>
-			    <tr>
-			    	<th scope="row">Jabatan</td>
-			    	<td>
-			    		<ul>
-			    			<li th:each="jabatan : ${jabatanPegawai}">
-			    				<p1 th:text= "${jabatan.nama}"></p1>
-			    			</li>
-			    		</ul>
-			    	</th>
-			    </tr>
-			    <tr>
-			      <th scope="row">Gaji</th>
-			      <td th:text="'Rp ' + ${gaji}"></td>
-			    </tr>
-			  </tbody>
-			</table>
-			<div class="text-center">
-			<form th:action="@{/pegawai/update/}">
-				<input type="hidden" name="nip" th:value="${pegawai.nip}">
-	  			<button class="btn btn-primary">Ubah</button>
-	 		</form>
-	 		</div>
+    <nav th:replace = "fragments/fragment :: navbar"></nav>
+    <br>
+    <h3 th:text = "'Lihat Data Pegawai - ' + ${pegawai.nip}"></h3>
+	<br>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center">
+                Detail Pegawai
+            </div>
+            <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>NIP</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${pegawai.nip}"></p>
+                        </div>
+                    </div>	
+                
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Nama</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${pegawai.nama}"></p>
+                        </div>
+                    </div>		
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tempat Lahir</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text ="${pegawai.tempatLahir}"></p>
+                        </div>
+                    </div>	
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tanggal Lahir</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${pegawai.tanggalLahir}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Tahun Masuk</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${pegawai.tahunMasuk}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Nama Instansi</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "${pegawai.instansi.nama} + ' - ' + ${pegawai.instansi.provinsi.nama}"></p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Jabatan</p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li th:each="jabatan : ${jabatanPegawai}">
+                                    <p1 th:text= "${jabatan.nama}"></p1>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Gaji</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p th:text = "'Rp ' + ${gaji}"></p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <form th:action="@{/pegawai/ubah}">
+                            <input type="hidden" name="nip" th:value="${pegawai.nip}">
+                            <button class="btn btn-primary">Ubah</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 	</body>
 </html>

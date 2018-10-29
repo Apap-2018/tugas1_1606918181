@@ -3,6 +3,21 @@ body{
 	height:910px;
 }
 
+h2 {
+	color: white;
+}
+
+h3 {
+	color: white;
+}
+
+h6 {
+	color: white;
+}
+
+a {
+	color: white;
+}
 
 /* Split the screen in half */
 .split {
@@ -10,7 +25,7 @@ body{
   width: 50%;
   position: fixed;
   z-index: 1;
-  top: 50;
+  top: 0;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -68,4 +83,26 @@ body{
     display: block;
     text-align: left;
   }
+}
+
+.card {
+   	margin: 0 auto;
+    float: none; 
+}
+
+.col-md-6 {
+	margin: 0 auto;
+	float: none; 
+}
+
+.col-md-4 {
+	margin: 0 auto;
+	float: none; 
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+  max-height: 200px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }

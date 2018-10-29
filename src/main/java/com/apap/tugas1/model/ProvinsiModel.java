@@ -21,7 +21,6 @@ public class ProvinsiModel implements Serializable{
 
 	//id
 	@Id
-	@Size(max = 10)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
@@ -34,7 +33,7 @@ public class ProvinsiModel implements Serializable{
 	//presentasi_tunjangan
 	@NotNull
 	@Column(name = "presentase_tunjangan", nullable = false)
-	private Double presentase_tunjangan;
+	private Double presentaseTunjangan;
 	
 	//relationship ke instansi
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -56,12 +55,20 @@ public class ProvinsiModel implements Serializable{
 		this.nama = nama;
 	}
 
-	public Double getPresentase_tunjangan() {
-		return presentase_tunjangan;
+	public Double getPresentaseTunjangan() {
+		return presentaseTunjangan;
 	}
 
-	public void setPresentase_tunjangan(Double presentasi_tunjangan) {
-		this.presentase_tunjangan = presentasi_tunjangan;
+	public void setPresentaseTunjangan(Double presentaseTunjangan) {
+		this.presentaseTunjangan = presentaseTunjangan;
+	}
+
+	public List<InstansiModel> getInstansiProvinsi() {
+		return instansiProvinsi;
+	}
+
+	public void setInstansiProvinsi(List<InstansiModel> instansiProvinsi) {
+		this.instansiProvinsi = instansiProvinsi;
 	}
 
 	public List<InstansiModel> getListInstansi() {

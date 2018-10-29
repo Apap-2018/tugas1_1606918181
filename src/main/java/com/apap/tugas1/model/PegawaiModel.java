@@ -31,7 +31,6 @@ public class PegawaiModel implements Serializable{
 
 	//id
 	@Id
-	@Size(max = 20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
@@ -51,18 +50,18 @@ public class PegawaiModel implements Serializable{
 	@NotNull
 	@Size(max = 255)
 	@Column(name = "tempat_lahir", nullable = false)
-	private String tempat_lahir;
+	private String tempatLahir;
 	
 	//tanggal_lahir
 	@NotNull
 	@Column(name = "tanggal_lahir", nullable = false)
-	private Date tanggal_lahir;
+	private Date tanggalLahir;
 	
 	//tahun_masuk
 	@NotNull
 	@Size(max = 255)
 	@Column(name = "tahun_masuk", nullable = false)
-	private String tahun_masuk;
+	private String tahunMasuk;
 	
 	//relationship ke jabatan
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -101,29 +100,31 @@ public class PegawaiModel implements Serializable{
 	public void setNama(String nama) {
 		this.nama = nama;
 	}
+	
+	
 
-	public String getTempat_lahir() {
-		return tempat_lahir;
+	public String getTempatLahir() {
+		return tempatLahir;
 	}
 
-	public void setTempat_lahir(String tempat_lahir) {
-		this.tempat_lahir = tempat_lahir;
+	public void setTempatLahir(String tempatLahir) {
+		this.tempatLahir = tempatLahir;
 	}
 
-	public Date getTanggal_lahir() {
-		return tanggal_lahir;
+	public Date getTanggalLahir() {
+		return tanggalLahir;
 	}
 
-	public void setTanggal_lahir(Date tanggal_lahir) {
-		this.tanggal_lahir = tanggal_lahir;
+	public void setTanggalLahir(Date tanggalLahir) {
+		this.tanggalLahir = tanggalLahir;
 	}
 
-	public String getTahun_masuk() {
-		return tahun_masuk;
+	public String getTahunMasuk() {
+		return tahunMasuk;
 	}
 
-	public void setTahun_masuk(String tahun_masuk) {
-		this.tahun_masuk = tahun_masuk;
+	public void setTahunMasuk(String tahunMasuk) {
+		this.tahunMasuk = tahunMasuk;
 	}
 
 	public List<JabatanModel> getJabatanPegawai() {

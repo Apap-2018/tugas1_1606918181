@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title th:replace="fragments/fragment :: headerFragment (pageTitle='Add')"></title>
+	<title th:replace="fragments/fragment :: headerFragment (pageTitle='Error')"></title>
 	<object th:include = "fragments/fragment :: css" th:remove = "tag"></object>
 	<object th:include = "fragments/fragment :: js" th:remove = "tag"></object>
 </head>
@@ -10,8 +10,8 @@
 <body>
 	<nav th:replace = "fragments/fragment :: navbar"></nav>
 	<br>
-	<h2>Error: Jabatan Tidak Dapat Dihapus!</h2>
-	<a>Terdapat pegawai yang memiliki jabatan tersebut.</a>
+	<h3>Error: Jabatan Tidak Dapat Dihapus!</h3>
+	<h2>Terdapat pegawai yang memiliki jabatan tersebut.</h2>
 </body>
 
 </html>

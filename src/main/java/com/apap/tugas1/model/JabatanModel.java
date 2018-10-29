@@ -41,11 +41,22 @@ public class JabatanModel implements Serializable{
 	//gaji_pokok
 	@NotNull
 	@Column(name = "gaji_pokok", nullable = false)
-	private Double gaji_pokok;
+	private Double gajiPokok;
 	
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             mappedBy = "jabatanPegawai")
     private List<PegawaiModel> listPegawai;
+    
+    //default value untuk jumlah pegawai
+    private int jumlahPegawai = 0;
+    
+	public int getJumlahPegawai() {
+		return jumlahPegawai;
+	}
+
+	public void setJumlahPegawai(int jumlahPegawai) {
+		this.jumlahPegawai = jumlahPegawai;
+	}
 
 	public long getId() {
 		return id;
@@ -71,20 +82,16 @@ public class JabatanModel implements Serializable{
 		this.deskripsi = deskripsi;
 	}
 
-	public Double getGaji_pokok() {
-		return gaji_pokok;
+	public Double getGajiPokok() {
+		return gajiPokok;
 	}
 
-	public void setGaji_pokok(Double gaji_pokok) {
-		this.gaji_pokok = gaji_pokok;
+	public void setGajiPokok(Double gajiPokok) {
+		this.gajiPokok = gajiPokok;
 	}
 
-	public List<PegawaiModel> getListPegawai() {
-		return listPegawai;
-	}
-
-	public void setListPegawai(List<PegawaiModel> listPegawai) {
-		this.listPegawai = listPegawai;
+	public int sizeJabatan() {
+		return listPegawai.size();
 	}
 }
 

@@ -21,7 +21,6 @@ public class JabatanPegawaiModel implements Serializable{
 
 	//id
 	@Id
-	@Size(max = 20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 

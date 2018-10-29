@@ -1,5 +1,6 @@
 package com.apap.tugas1.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,30 @@ public class PegawaiServiceImpl implements PegawaiService {
 	//lebih dari 1 jabatan, gaji pokok yang paling besar.
 	public double getGajiByNip(String nip) {
 		PegawaiModel pegawai = this.getPegawaiDetailByNip(nip);
-		double presentaseTunjangan = pegawai.getInstansi().getProvinsi().getPresentase_tunjangan();
-		double max_gaji = 0;
+		double presentaseTunjangan = pegawai.getInstansi().getProvinsi().getPresentaseTunjangan();
+		double maxGaji = 0;
 		for (JabatanModel jabatan : pegawai.getJabatanPegawai()) {
-			if (jabatan.getGaji_pokok() > max_gaji) {
-				max_gaji = jabatan.getGaji_pokok();
+			if (jabatan.getGajiPokok() > maxGaji) {
+				maxGaji = jabatan.getGajiPokok();
 			}
 		}
-		double total = max_gaji + ((presentaseTunjangan / 100) * max_gaji);
+		double total = maxGaji + ((presentaseTunjangan / 100) * maxGaji);
 		return total;
+	}
+
+	@Override
+	public void addPegawai(PegawaiModel pegawai) {
+		pegawaiDb.save(pegawai);
+		
+	}
+
+	@Override
+	public PegawaiModel getPegawaiById(Long id) {
+		return pegawaiDb.getOne(id);
+	}
+
+	@Override
+	public List<PegawaiModel> getListPegawai() {
+		return pegawaiDb.findAll();
 	}
 }

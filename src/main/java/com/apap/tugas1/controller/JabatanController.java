@@ -73,7 +73,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.GET)
 	private String deleteJabatan(@RequestParam("idJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
-		if (jabatan.getListPegawai().size() < 1) {
+		if (jabatan.sizeJabatan() < 1) {
 			jabatanService.delete(jabatan);
 			return "delete";
 		}
