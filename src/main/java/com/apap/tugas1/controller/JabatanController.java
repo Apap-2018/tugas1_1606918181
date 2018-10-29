@@ -49,9 +49,12 @@ public class JabatanController {
 	
 	//Fitur 6: Menampilkan Data Suatu Jabatan
 	@RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
-	public String viewPegawai(@RequestParam (value = "idJabatan") long id, Model model) {
+	public String viewJabatan(@RequestParam (value = "idJabatan", required=true) long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		
+		//Bonus: Menampilkan Jumlah Pegawai untuk Setiap Jabatan
 		model.addAttribute("jabatan", jabatan);
+		model.addAttribute("jumlahPegawai", jabatan.sizeJabatan());
 		return "viewJabatan";
 	}
 	

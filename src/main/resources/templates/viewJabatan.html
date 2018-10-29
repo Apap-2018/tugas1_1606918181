@@ -44,7 +44,12 @@
                             <p th:text = "'Rp ' + ${jabatan.gajiPokok}"></p>
                         </div>
                     </div>
-				
+                    
+                    <!--Jumlah Pegawai-->
+					 <div class="row">
+						   <div class="col-md-6"><p>Jumlah Pegawai</p></div>
+						   <div class="col-md-6"><p th:text="${jumlahPegawai}"></p></div>
+					 </div>
                     <br>
                     <div class="text-center">
                         <form th:action="@{/jabatan/ubah}">
